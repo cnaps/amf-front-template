@@ -11,10 +11,10 @@ const Board = () => {
 	const [isLoading, setLoading] = useState(false);
 
 	useEffect(async () => {
-		await setLoading(true);
+		setLoading(true);
 		const response = await getPostList();
-		await setData(response);
-		await setLoading(false);
+		setData(response);
+		setLoading(false);
 	}, []);
 
 	const moveCreatePostPage = () => {
