@@ -44,7 +44,7 @@ const UpdatePost = () => {
 							.max(255)
 							.required('제목은 필수입니다.'),
 					})}
-					onSubmit={async (values, { setSubmitting}) => {
+					onSubmit={async (values, {setSubmitting}) => {
 						setSubmitting(true);
 
 						await updatePost({id}, values);
@@ -98,7 +98,6 @@ const UpdatePost = () => {
 											id='content'
 											name='content'
 											minRows={5}
-											fullWidth
 											aria-label='maximum height'
 											placeholder='내용을 입력하세요'
 											value={values.content}
@@ -118,7 +117,6 @@ const UpdatePost = () => {
 								<Grid
 									container
 									justifyContent='flex-end'
-									xs={12}
 									style={{marginTop: 10}}
 									spacing={2}
 								>

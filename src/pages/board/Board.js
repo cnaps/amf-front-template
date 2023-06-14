@@ -10,12 +10,16 @@ const Board = () => {
 	const [data, setData] = useState([]);
 	const [isLoading, setLoading] = useState(false);
 
-	useEffect(async () => {
+	useEffect(() => {
+		findPostList();
+	}, []);
+
+	const findPostList = async () => {
 		setLoading(true);
 		const response = await getPostList();
 		setData(response);
 		setLoading(false);
-	}, []);
+	};
 
 	const moveCreatePostPage = () => {
 		navigate(`/post/write`);
@@ -23,7 +27,7 @@ const Board = () => {
 
 	const rowClick = useCallback((e, row) => {
 		const postId = row.id;
-		navigate('/post' + postId );
+		navigate(`/post/${postId}`);
 	}, []);
 
 	return (

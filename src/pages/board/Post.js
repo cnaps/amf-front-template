@@ -26,28 +26,31 @@ const Post = () => {
 	const [post, setPost] = useState(null);
 	const [deleteLoading, setDeleteLoading] = useState(false);
 
-	useEffect(async () => {
+	useEffect(() => {
+		findPost();
+	}, [id]);
+
+	const findPost = async () => {
 		const result = await getPost({id});
 		setPost(result);
-	}, [id]);
+	};
 
 	const goBackList = () => {
 		navigate(`/board`);
 	};
 
 	const deleteClick = async () => {
-		try{
+		try {
 			setDeleteLoading(true);
 			await deletePost({id});
 			enqueueSnackbar('게시글이 삭제되었습니다.', {variant: 'success'});
 			setDeleteLoading(false);
 
 			goBackList();
-		}catch(err){
+		} catch (err) {
 			enqueueSnackbar(err, {variant: 'error'});
 			setDeleteLoading(false);
 		}
-
 	};
 
 	const updatePost = async () => {
@@ -62,7 +65,7 @@ const Post = () => {
 
 	return (
 		<>
-			<Stack container direction='row' spacing={2}>
+			<Stack direction='row' spacing={2}>
 				<Grid container>
 					<Grid item>
 						<Button variant='contained' onClick={goBackList}>
@@ -116,7 +119,6 @@ const Post = () => {
 								</Grid>
 								<Typography
 									variant='body1'
-									minRows={5}
 									aria-label='maximum height'
 									placeholder='내용'
 								>

@@ -12,13 +12,13 @@ import {Formik} from 'formik';
 import {createPost} from '../../api/board';
 import {useNavigate} from 'react-router-dom';
 import {useSnackbar} from 'notistack';
-import {useSelector} from "react-redux";
+import {useSelector} from 'react-redux';
 
 const CreatePost = () => {
 	const {enqueueSnackbar} = useSnackbar();
 	const navigate = useNavigate();
 	const user = useSelector((state) => state.user);
-	const { id, name } = user;
+	const {id, name} = user;
 
 	const goBackList = () => {
 		navigate(`/board`);
@@ -39,7 +39,7 @@ const CreatePost = () => {
 				validationSchema={Yup.object().shape({
 					title: Yup.string().max(255).required('제목은 필수입니다.'),
 				})}
-				onSubmit={async (values, { setSubmitting}) => {
+				onSubmit={async (values, {setSubmitting}) => {
 					setSubmitting(true);
 
 					await createPost(values);
@@ -53,14 +53,14 @@ const CreatePost = () => {
 				}}
 			>
 				{({
-					  errors,
-					  handleBlur,
-					  handleChange,
-					  handleSubmit,
-					  isSubmitting,
-					  touched,
-					  values,
-				  }) => (
+					errors,
+					handleBlur,
+					handleChange,
+					handleSubmit,
+					isSubmitting,
+					touched,
+					values,
+				}) => (
 					<form noValidate onSubmit={handleSubmit}>
 						<Grid container spacing={3}>
 							<Grid item xs={24} md={12}>
@@ -93,7 +93,6 @@ const CreatePost = () => {
 										id='content'
 										name='content'
 										minRows={5}
-										fullWidth
 										aria-label='maximum height'
 										placeholder='내용을 입력하세요'
 										value={values.content}
@@ -113,7 +112,6 @@ const CreatePost = () => {
 							<Grid
 								container
 								justifyContent='flex-end'
-								xs={12}
 								style={{marginTop: 10}}
 								spacing={2}
 							>
